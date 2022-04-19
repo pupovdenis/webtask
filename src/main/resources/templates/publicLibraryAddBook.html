@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Добавить книгу</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Создать новую запись:</h1>
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
+<form th:action="@{/publicLibrary/books/addBook}" th:object="${book}" method="POST" accept-charset="utf-8">
+    <input type="hidden" th:field="*{isPrivate}"/>
+    Name:
+    <input type="text" th:field="*{name}" />
+    <br/><br/>
+    Author:
+    <input type="text" th:field="*{author}" />
+    <br/><br/>
+    Release Date:
+    <input type="date" th:value="*{releaseDate}" th:field="*{releaseDate}"/>
+    <br/><br/>
+    <a th:href="@{/privateLibrary}">Отменить</a>
+    <br/><br/>
+    <input type="submit" value="Создать" />
+</form>
+<br/>
+</body>
+</html>

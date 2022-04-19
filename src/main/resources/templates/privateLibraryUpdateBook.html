@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Изменить книгу</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Изменить запись:</h1>
+<form th:action="@{/privateLibrary/books/{id}(id=${book.id})}" th:object="${book}" method="POST" accept-charset="utf-8">
+    <input type="hidden" th:value="*{isPrivate}" th:field="*{isPrivate}"/>
+    Name:
+    <input type="text" th:field="*{name}" />
+    <br/><br/>
+    Author:
+    <input type="text" th:field="*{author}" /><br/><br/>
+    Release Date:
+    <input type="date" th:value="*{releaseDate}" th:field="*{releaseDate}"/>
+    <br/><br/><br/>
+    <input type="submit" value="Сохранить" />
+</form>
+<br/>
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+version: '3.8'
+networks:
+  library-postgres:
+    driver: bridge
+volumes:
+  postgres_data:
+services:
+  app:
+    image: webtask:latest
+    container_name: web-task-application
+    ports:
+      - "8080:8080"
+      - "9000:9000"
+    networks:
+      - library-postgres
+    depends_on:
+      - db
+    environment:
+      - JAVA_OPT=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9000
+
+  db:
+    image: postgres:10
+    container_name: postgres-db
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - library-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: library
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 1m
+      timeout: 10s
+      retries: 2

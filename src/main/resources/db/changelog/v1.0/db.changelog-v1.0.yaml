@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: 01-changeset-BOOKS-table.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 02-changeset-BOOKS_SEQ-sequence-generator.sql
+      relativeToChangelogFile: true
+  - include:
+      file: 03-changeset-BOOKS-test-data.sql
+      relativeToChangelogFile: true
