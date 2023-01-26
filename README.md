@@ -1,4 +1,4 @@
-## Реализация тестового задания: Spring, Thymeleaf, LiqueBase, Swagger, Docker Compose
+## Реализация тестового задания: Spring, Thymeleaf, LiquiBase, Swagger, Docker Compose
 
 * Приложение стартует на http://localhost:8080/
 * До сборки и запуска требуется установленный и запущенный Docker Compose
